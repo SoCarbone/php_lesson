@@ -1,0 +1,86 @@
+div, p, a, h1, h2, h3, input, textarea {
+    box-sizing: border-box;
+}
+
+.container {
+    width:100%;
+    max-width: 930px;
+    margin:auto;
+    padding:0 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.commentaires, .content {
+    width:100%;
+    margin: auto auto;
+    margin-bottom: 50px;
+}
+
+.content form p {
+    width:100%;
+    background-color: lightskyblue;
+    margin:0;
+    padding:10px;
+}
+
+.content form p input, .content form textarea {
+    width:100%;
+}
+
+.content form .textarea {
+    height: 80px;
+}
+
+.billet h2 {
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    margin-bottom: 0px;
+}
+
+.content p {
+    padding: 20px 10px;
+    background-color: aliceblue;
+    margin :0;
+}
+
+.content .date_billet {
+    background-color: dodgerblue;
+    color:white;
+    padding: 5px;
+}
+
+.content input {
+    display:block;
+    margin-bottom: 5px;
+    width:100%;
+}
+
+.commentaires {
+    margin-bottom: 5px;
+}
+
+.commentaires p span {
+    font-weight: bold;
+}
+
+.page_number.active {
+    font-weight: bold;
+}
+
+.admin_list_post {
+    background-color: cornflowerblue;
+    border-bottom: 3px solid blue;
+    margin: 0 0;
+    padding: 10px;
+    color:white;
+}
+
+.admin_list_post a {
+    color:white;
+}
+

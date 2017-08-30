@@ -1,0 +1,67 @@
+body {
+    background-color: midnightblue;
+    font-family: verdana, sans-serif;
+    font-size: 12px;
+}
+
+.container, #display_messages, p, #post_messages, input, textarea {
+    box-sizing: border-box;
+}
+
+.container {
+    width:100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#display_messages {
+    background-color: darkblue;
+    border:5px solid dodgerblue;
+    padding:5px;
+}
+
+#display_messages p {
+    background-color: skyblue;
+    margin: 5px 0;
+    padding:3px;
+    color: midnightblue;
+}
+
+#display_messages p span {
+    font-weight: bold;
+}
+
+#post_message {
+    background-color: dodgerblue;
+    padding:  2px 15px;
+}
+
+#post_message input, #post_message textarea {
+    width:100%;
+}
+
+#post_message input[type="text"] {
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+    background: transparent;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#post_message textarea {
+    border: none;
+    color: midnightblue;
+    background-color: skyblue;
+    padding:5px;
+    font-family: verdana, sans-serif;
+}
+
+#post_message input[type="submit"] {
+    border: none;
+    color: white;
+    background-color: midnightblue;
+    font-size: 14px;
+    font-weight: bold;
+    padding:10px;
+}

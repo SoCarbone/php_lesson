@@ -1,0 +1,4 @@
+AuthName "Page d'administration du blog protégée"
+AuthType Basic
+AuthUserFile "G:\wamp64\www\formationphp\blog\admin\.htpasswd"
+Require valid-user

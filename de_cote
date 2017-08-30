@@ -1,0 +1,42 @@
+$target_dir = "uploads/";
+$target_file = $target_dir . basename($_FILES["upload_file"]["name"]);
+$uploadOk = 1;
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+if(isset($_POST["submit"])) {
+    $check = getimagesize($_FILES["upload_file"]["tmp_name"]);
+    if($check !== false) {
+        echo "<p>Le fichier est une image - " . $check["mime"] . ".</p>";
+        $uploadOk = 1;
+    } else {
+        echo "<p>Le fichier n'est pas une image.</p>";
+        $uploadOk = 0;
+    }
+}
+// Check if file already exists
+if (file_exists($target_file)) {
+    echo "<p>Désolé, le fichier existe déjà. Renommez le.</p>";
+    $uploadOk = 0;
+}
+// Check file size
+if ($_FILES["upload_file"]["size"] > 500000) {
+    echo "<p>Désolé votre fichier est trop volumineux. Son poids ne doit pas dépasser 5Mo.</p>";
+    $uploadOk = 0;
+}
+// Allow certain file formats
+if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+&& $imageFileType != "gif" ) {
+    echo "<p>Désolé, les extensions autorisées sont JPG, JPEG, PNG & GIF.</p>";
+    $uploadOk = 0;
+}
+// Check if $uploadOk is set to 0 by an error
+if ($uploadOk == 0) {
+    echo "<p>Désolé, votre fichier n'a pas été téléchargé.</p>";
+// if everything is ok, try to upload file
+} else {
+    if (move_uploaded_file($_FILES["upload_file"]["tmp_name"], $target_file)) {
+        echo "<p>Le fichier ". basename( $_FILES["upload_file"]["name"]). " a été téléchargé.</p>";
+    } else {
+        echo "<p>Désolé, une erreur s'est produite pendant le téléchargement. Veuillez recommencer s'il vous plait.</p>";
+    }
+}

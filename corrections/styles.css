@@ -1,0 +1,22 @@
+form
+{
+	text-align: center;
+	margin-top:0px;
+}
+
+h1, h1+p
+{
+	text-align:center;
+}
+
+a:visited
+{
+	color: blue;
+}
+
+.lienAnciensMessages
+{
+	margin-left: 900px;
+
+}
+
