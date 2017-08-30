@@ -17,7 +17,12 @@ if (isset($_GET['destroy']) AND $_GET['destroy'] == true)
 $db = new PDO('mysql:host=localhost;dbname=battle_game', 'root', '');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $manager = new CharacterManager($db);
+
+// Je fais une modif pour voir
+
 ?>
+
+
 
 <!doctype html>
 
