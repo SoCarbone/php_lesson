@@ -1,16 +1,19 @@
 <?php
 
-class Character
+abstract class Character
 {
     //Les attributs
-    private $_id;
-    private $_name;
-    private $_damage;
-    private $_xp;
-    private $_level;
-    private $_hit;
-    private $_last_hit;
-    private $_last_care;
+    protected $_id;
+    protected $_name;
+    protected $_type;
+    protected $_damage;
+    protected $_skill;
+    protected $_xp;
+    protected $_level;
+    protected $_hit;
+    protected $_last_hit;
+    protected $_last_care;
+    protected $_wake_up;
 
     //Les constantes
     const ITS_ME = 1;
@@ -18,6 +21,7 @@ class Character
     const CHAR_HIT = 3;
     const CHAR_LEVEL_UP = 4;
     const NEW_DAY = 5;
+    const SLEEP = 6;
 
     //Le constructeur
     public function __construct(array $char)
@@ -41,6 +45,31 @@ class Character
         // sinon on envoie la constante de personnage frappé
         $char->removeHit();
         return self::CHAR_HIT;
+    }
+
+    public function Sleep($skill)
+    {
+        $now = new DateTime();
+        $interval = 'P' . $skill . 'M';
+        $time = new dateinterval($interval);
+
+        if ($now >= $this->_wake_up)
+        {
+            $time_end = $now->add($time);
+            $this->_wake_up = $time_end;
+        }
+    }
+
+    public function checkSleep()
+    {
+        if (new DateTime() < new DateTime($this->_wake_up))
+        {
+            return self::SLEEP;
+        }
+        else
+        {
+            return 0;
+        }
     }
 
     public function addXp($value)
@@ -102,12 +131,15 @@ class Character
     //Getters
     public function id() { return $this->_id; }
     public function name() { return $this->_name; }
+    public function type() { return $this->_type; }
     public function damage() { return $this->_damage; }
+    public function skill() { return $this->_skill; }
     public function xp() { return $this->_xp; }
     public function level() { return $this->_level; }
     public function hit() { return $this->_hit; }
     public function lastHit() { return $this->_last_hit; }
     public function lastCare() { return $this->_last_care; }
+    public function wakeUp() { return $this->_wake_up; }
 
     //Setters
     public function setId($id)
@@ -126,12 +158,48 @@ class Character
             $this->_name = $name;
         }
     }
+    public function setType($type)
+    {
+        $type = htmlspecialchars($type);
+        if (is_string($type))
+        {
+            $this->_type = $type;
+        }
+    }
     public function setDamage($damage)
     {
         $damage = (int)$damage;
         if ($damage >= 0)
         {
             $this->_damage = $damage;
+        }
+    }
+    public function setSkill($skill)
+    {
+        $skill = (int)$skill;
+        if ($skill >= 0 AND $skill <= 4)
+        {
+            $this->_skill = $skill;
+        }
+        if ($this->_damage >= 0)
+        {
+            $this->_skill = 4;
+        }
+        if ($this->_damage >= 25)
+        {
+            $this->_skill = 3;
+        }
+        if ($this->_damage >= 50)
+        {
+            $this->_skill = 2;
+        }
+        if ($this->_damage >= 75)
+        {
+            $this->_skill = 1;
+        }
+        if ($this->_damage >= 90)
+        {
+            $this->_skill = 0;
         }
     }
     public function setXp($xp)
@@ -172,4 +240,13 @@ class Character
             $this->_last_care = $last_care;
         }
     }
+    public function setWake_up($wake_up)
+    {
+        if (is_string($wake_up))
+        {
+            $this->_wake_up = $wake_up;
+        }
+    }
+
+
 }
