@@ -1,0 +1,6 @@
+RewriteEngine On
+
+# If the file you are trying to access exists (if you want to access an image for example). 
+# Then we do not rewrite the URL.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ bootstrap.php?app=Frontend [QSA,L]

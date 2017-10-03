@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<definitions>
+    <define var="host" value="localhost" />
+    <define var="dbname" value="ocfram" />
+    <define var="pseudo" value="root" />
+    <define var="pass" value="" />
+
+    <define var="number_of_news" value="5" />
+    <define var="number_of_characters" value="20" />
+</definitions>

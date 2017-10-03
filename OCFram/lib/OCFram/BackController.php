@@ -14,7 +14,7 @@ abstract class BackController extends ApplicationComponent
     {
         parent::__construct($app);
 
-        $this->managers = new Managers('PDO', PDOFactory::getMysqlConnection());
+        $this->managers = new Managers('PDO', PDOFactory::getMysqlConnexion());
         $this->page = new Page($app);
 
         $this->setModule($module);
@@ -26,12 +26,12 @@ abstract class BackController extends ApplicationComponent
     {
         $method = 'execute'.ucfirst($this->action);
 
-        if(!is_callable([$this, $methos]))
+        if(!is_callable([$this, $method]))
         {
             throw new \RuntimeException('L\'action '.$this->action.' n\'est pas définie sur ce module');
         }
 
-        $this->method($this->app->httpRequest());
+        $this->$method($this->app->httpRequest());
     }
 
     public function page()
@@ -67,5 +67,7 @@ abstract class BackController extends ApplicationComponent
         }
 
         $this->view = $view;
+
+        $this->page->setContentFile(__DIR__.'/../../App/'.$this->app->name().'/Modules/'.$this->module.'/Views/'.$this->view.'.php');
     }
 }
