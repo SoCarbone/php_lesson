@@ -36,7 +36,7 @@ class NewsController extends BackController
 
     public function executeShow(HTTPRequest $request)
     {
-        $news = $this->managers->getManagersOf('News')->getNews($request->getData('$id'));
+        $news = $this->managers->getManagersOf('News')->getNews($request->getData('id'));
 
         if(empty($news))
         {
